@@ -66,7 +66,7 @@ make some directories **in the hadoop distributed file system!**
     hdfs dfs -mkdir /user/
     hdfs dfs -mkdir /user/irmak/
 
-Of course replace `irmak` with your own username
+Of course replace `irmak` with your own username.
 Let’s check that they exist
 
     hdfs dfs -ls /
