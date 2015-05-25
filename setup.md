@@ -1,7 +1,6 @@
 ### Hadoop installation and setup on an Ubuntu server
 
-If you have a cloud server (through a service such as AWS, Rackspace, Digital Ocean, etc.), ssh to it.
-If you're doing this on your local server, just open up a terminal and follow the white rabbit below.
+Create a cloud server (through a service such as AWS, Rackspace, Digital Ocean, etc.), ssh to it, and follow the white rabbit below.
 
 #### Install TextBlob
 
