@@ -8,6 +8,7 @@ The main idea and structure is based on [Michael G. Noll's great tutorial](http:
 ## Let's Begin
 
 [Setup your Hadoop cluster](setup.md)
+
 [Write your first Python MapReduce program](mapreduce.md)
 
 
