@@ -1,5 +1,7 @@
 ## Using Hive
 
+#### Install and set up Hive
+
 ssh to your cloud computer and switch to the hduser. Go to the hduser's home.
 
 ```bash
@@ -64,6 +66,8 @@ Hive's syntax is (almost) identical to SQL. So let's load up some data and use i
 hive> exit;
 ```
 
+#### Download some baseball data to play with
+
 You should be back at your regular prompt now. Let's download some baseball data.
 ```bash
 $ wget http://seanlahman.com/files/database/lahman-csv_2014-02-14.zip
@@ -81,6 +85,8 @@ $ su hduser
 $ mkdir baseballdata
 $ unzip lahman-csv_2014-02-14.zip -d baseballdata
 ```
+
+#### First look & cleanup of the data
 
 Now you have a bunch of csv files in the `baseballdata` directory.
 You can think of each csv as a table in a baseball database.
@@ -189,6 +195,8 @@ abbeybe01,1869,11,11,USA,VT,Essex,1962,6,11,USA,VT,Colchester,Bert,Abbey,Bert Wo
 abbeych01,1866,10,14,USA,NE,Falls City,1926,4,27,USA,CA,San Francisco,Charlie,Abbey,Charles S.,169,68,L,L,1893-08-16,1897-08-19,abbec101,abbeych01
 ```
 
+#### Upload data to Hive
+
 Indeed it's gone. Alright. Let's upload this to hive. First, we need to upload it to hdfs.
 (of course, change `irmak` to whichever directory you have in hdfs) 
 ```bash
@@ -259,6 +267,9 @@ OK
 Time taken: 1.166 seconds
 ```
 And it's in!
+
+#### Use Hive to make queries over the distributed data
+
 We now have a Hive table. The best part of hive is, when you make a query (that most of the time looks **exactly** like a sql query), Hive automatically creates the map and reduce tasks, runs them over the hadoop cluster, and gives you the answer, without you having to worry about any of it. If your question is easily represented in the form of a sql query, Hive will take care of all the dirty work for you. The table might be spread over thousands of computers, but you don't need to think hard about that at all.
 
 Let's start easy. Let's find out how many players we have in this table.
@@ -447,6 +458,8 @@ Time taken: 9.265 seconds, Fetched: 132 row(s)
 As you can see, a simple GROUP BY statement takes care of everything. Easier than writing and executing specific mapreduce functions.
 
 In this manner, you can do sql-like queries over tons of data that live in the hdfs in a distributed state. Since hdfs and mapreduce have overheads, it will not be as fast as a sql query on data that fits a single machine, but you now get the answers in parallel, and are able to do sql queries over hundreds of terabytes of data.
+
+#### Join example in Hive
 
 Let's upload another table and see how joins work. Salaries.csv has four columns: year, team, league, player, salary. It only has salary information for after 1984, but it's pretty extensive.
 
@@ -641,6 +654,8 @@ OK
 Time taken: 15.451 seconds, Fetched: 106 row(s)
 ```
 Done. By joining tables, you can build some pretty complicated queries, which Hive will automatically execute with MapReduce.
+
+#### More resources
 
 [You can find the documentation for Hive commands here](https://cwiki.apache.org/confluence/display/Hive/LanguageManual).
 
